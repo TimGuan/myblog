@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
+title: 答案在风中的博客
+subtitle: blowing in the wind
+description: 匠心 
+author: TimGuan
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.timguan.net
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -63,7 +63,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+# theme: landscape
+theme: NexT
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -71,3 +72,12 @@ deploy:
   type: git
   repo: git@github.com:TimGuan/timguan.github.io.git
   branch: master
+
+# algolia
+## 站内搜索
+algolia:
+  applicationID: '7HAIUMNUNC'
+  apiKey: '323ef222dba6ce48bd6f811f277ea482'
+  adminApiKey: '1d6c6a90e82ed59097a3d1ba2819acb4'
+  indexName: 'index of blog'
+  chunkSize: 5000
