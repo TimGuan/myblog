@@ -1,6 +1,6 @@
 ---
 title: linux装机(tengine、jdk8安装教程)
-date: 2017-03-23 03:42:34
+date: 2017-03-24 13:21:46
 categories: 
 - 编程
 tags: 
