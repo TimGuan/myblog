@@ -1,7 +1,13 @@
-layout: github
+---
 title: github pages + hexo + NexT 搭建静态博客
 date: 2017-03-23 03:37:35
-tags: 技巧
+categories: 
+- 编程
+
+tags: 
+- hexo
+- NexT
+- github pages
 ---
 ---
 github pages + hexo + NexT 搭建静态博客
@@ -19,3 +25,8 @@ github pages + hexo + NexT 搭建静态博客
 [leancloud](https://leancloud.cn/)
 [Algolia 搜索](http://theme-next.iissnan.com/third-party-services.html#algolia-search)
 [Algolia](https://www.algolia.com)
+[评论](http://theme-next.iissnan.com/third-party-services.html#disqus)
+[disqus](https://disqus.com/)
+
+其他攻略
+[Hexo的分类和标签设置](http://ijiaober.github.io/2014/08/05/hexo/hexo-04/)

@@ -6,7 +6,7 @@
 title: 答案在风中的博客
 subtitle: blowing in the wind
 description: 匠心 
-author: TimGuan
+author: 答案在风中
 language: zh-Hans
 timezone:
 
@@ -46,6 +46,10 @@ highlight:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  编程: programming
+  生活: life
+  angularjs: angularjs
+  其他: other
 tag_map:
 
 # Date / Time format
@@ -64,7 +68,7 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: NexT
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
