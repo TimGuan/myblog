@@ -3,9 +3,11 @@ title: 字节码及ASM使用
 date: 2017-03-24 12:47:19
 categories: 
 - 编程
+- java
 tags:
 - ASM
 - JVM
+- java
 ---
 ## 什么是字节码？
 * 机器码
