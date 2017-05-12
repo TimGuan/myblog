@@ -10,7 +10,7 @@
   {% include '_partials/head.swig' %}
   <title>{% block title %}{% endblock %}</title>
   <div class="icon">
-    <img src="/images/mark-github.png">
+    <img src="/images/yit.png">
   </div>
   <style>
       .icon{
