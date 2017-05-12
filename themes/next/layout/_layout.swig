@@ -9,6 +9,14 @@
 <head>
   {% include '_partials/head.swig' %}
   <title>{% block title %}{% endblock %}</title>
+  <div class="icon">
+    <img src="/images/mark-github.png">
+  </div>
+  <style>
+      .icon{
+          display: none;
+      }
+  </style>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">

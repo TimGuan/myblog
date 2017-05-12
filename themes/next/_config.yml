@@ -332,8 +332,7 @@ baidushare: true
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
-#google_site_verification:
-
+google_site_verification: BD022PVX4fPOvjiHcJ1xicwAVGivp4vbM65Ov_CMZGo
 # Google Analytics
 #google_analytics:
 

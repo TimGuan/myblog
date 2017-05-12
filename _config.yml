@@ -85,3 +85,8 @@ algolia:
   adminApiKey: '1d6c6a90e82ed59097a3d1ba2819acb4'
   indexName: 'index of blog'
   chunkSize: 5000
+
+#table支持
+marked:
+gfm: true
+breaks: false
