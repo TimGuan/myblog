@@ -1,15 +1,17 @@
 ---
-title: squirrel-foundation与spring集成
+title: squirrel-foundation状态机的使用细节
 date: 2017-06-21 16:59:11
 categories: 
 - 编程
 - 系统设计
+- 状态机引擎
 tags:
 - FSM
 - 状态机引擎
 - finite state machine
 - squirrel-foundation
 - squirrel
+- spring
 ---
 上一篇[文章](http://www.timguan.net/2017/06/19/%E7%8A%B6%E6%80%81%E6%9C%BA%E5%BC%95%E6%93%8E%E9%80%89%E5%9E%8B/)介绍了stateless4j、spring-statemachine以及squirrel-foundation三款状态机引擎的实现原理，以及我为何选择squirrel-foundation作为解决方案。本文主要介绍一下项目中如何使用squirrel-foundation的一些细节以及如何与spring进行集成。在阅读本文前，建议先阅读官方的[使用手册](http://hekailiang.github.io/squirrel/)。
 <!-- more -->
@@ -172,6 +174,6 @@ public abstract class AbstractStateMachineEngine<T extends UntypedStateMachine> 
 squirrel statemachine提供了DotVisitor、SCXMLVisitor两种实现方式用于生成状态机描述文件，项目里我选择了graphviz用来做状态拓扑
 [graphviz gui工具下载](http://ortsyq47e.bkt.clouddn.com/qnsource/images/graphviz-2.40.1.pkg)
 PS:由于squirrel默认的DotVisitorImpl对带中文描述属性的State/Event枚举不友好，我在原有代码上做了一些调整，有类似需求的可以看[这里](https://github.com/TimGuan/squirrel/tree/developer/timguan)
-{% qnimg returnGoods.jpg extend:?imageView2/2/w/600 title="退货流程" %}
+{% qnimg returnGoods.jpg title="退货流程" %}
 
 以上是我在落地状态机改造过程中的一些细节，欢迎大家留意讨论。
