@@ -17,10 +17,12 @@ tags:
 <!-- more -->
 
 # 生命周期
+
 ## 状态机创建过程
 * StateMachine: StateMachine实例由StateMachineBuilder创建不被共享，对于使用annotation方式(或fluent api)定义的StateMachine，StateMachine实例即根据此定义创建，相应的action也由本实例执行，与spring的集成最终要的就是讲spring的bean实例注入给由builder创建的状态机实例；
 * StateMachineBuilder: 本质上是由StateMachineBuilderFactory创建的动态代理。被代理的StateMachineBuilder默认实现为StateMachineBuilderImpl，内部描述了状态机实例创建细节包括State、Event、Context类型信息、constructor等，同时也包含了StateMachine的一些全局共享资源包括StateConverter、EventConverter、MvelScriptManager等。StateMachineBuilder可被复用，使用中可被实现为singleton；
 * StateMachineBuilderFactory: 为StateMachineBuilder创建的动态代理实例；
+
 ## 事件处理过程
 * 状态正常迁移
 TransitionBegin--(exit->transition->entry)-->TransitionComplete-->TransitionEnd
@@ -29,8 +31,7 @@ TransitionBegin--(exit->transition->entry)-->TransitionException-->TransitionEnd
 * 状态迁移事件拒绝
 TransitionBegin-->TransitionDeclined-->TransitionEnd
 
-{% qnimg statemachine-lifecycle.jpeg extend:?imageView2/2/w/600 title="statemachine lifecycle" %}
-
+{% qnimg statemachine-lifecycle.jpeg extend:?imageView2/2/w/600 title:"statemachine lifecycle" %}
 
 # spring集成
 从statemachine的生命流程上可以看到，StateMachineBuilder可以单例方式由spring container管理，而stateMachine的instance的生命周期伴随着请求(或业务)。
@@ -137,7 +138,7 @@ public class DiscountRefundStateMachine extends AbstractUntypedStateMachine {
 # 分布式锁+事务
 由于StateMachine实例不是由Spring容器创建，所以这个过程中无法通过注解方式开启事务(Spring没有机会去创建事务代理)，我采用了编程式事务，在AbstractStateMachineEngine的fire函数中隐式的实现。
 AbstractStateMachineEngine#fire
-```
+``` java
 public abstract class AbstractStateMachineEngine<T extends UntypedStateMachine> implements ApplicationContextAware {
     ...
     public void fire(int rmaId, State initialState, Trigger trigger, StateMachineContext context) {
@@ -151,6 +152,7 @@ public abstract class AbstractStateMachineEngine<T extends UntypedStateMachine> 
                                     StateMachineConfiguration.create().enableDebugMode(true).enableAutoStart(true),
                                     //注入applicationContext
                                     applicationContext);
+                DataSourceTransactionManager transactionManager = applicationContext.get("transactionManager")
                 DefaultTransactionDefinition def = new DefaultTransactionDefinition();
                 def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
                 TransactionStatus status = transactionManager.getTransaction(def);
@@ -174,6 +176,6 @@ public abstract class AbstractStateMachineEngine<T extends UntypedStateMachine> 
 squirrel statemachine提供了DotVisitor、SCXMLVisitor两种实现方式用于生成状态机描述文件，项目里我选择了graphviz用来做状态拓扑
 [graphviz gui工具下载](http://ortsyq47e.bkt.clouddn.com/qnsource/images/graphviz-2.40.1.pkg)
 PS:由于squirrel默认的DotVisitorImpl对带中文描述属性的State/Event枚举不友好，我在原有代码上做了一些调整，有类似需求的可以看[这里](https://github.com/TimGuan/squirrel/tree/developer/timguan)
-{% qnimg returnGoods.jpg title="退货流程" %}
+{% qnimg returnGoods.jpg title:"退货流程" %}
 
 以上是我在落地状态机改造过程中的一些细节，欢迎大家留意讨论。
