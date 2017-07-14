@@ -14,6 +14,6 @@ tags:
 
 Api Gateway的设计与落地(【T创& iTechPlus技术】5月Java开发者大会|Java之美 分享内容)
 <!-- more -->
-<center><embed src="http://asset.yit.com/temp/pdf/API%20Gateway%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%90%BD%E5%9C%B0.pdf?v=1" class="pdfview"  pluginspage="http://www.adobe.com/products/acrobat/readstep2.html"></center>
+{% pdf http://asset.yit.com/temp/pdf/API%20Gateway%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%90%BD%E5%9C%B0.pdf?v=1 %}
 
 [下载地址](http://asset.yit.com/temp/pdf/API%20Gateway%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%90%BD%E5%9C%B0.key?v=1)

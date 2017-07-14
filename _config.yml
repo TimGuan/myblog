@@ -73,9 +73,10 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: git@github.com:TimGuan/timguan.github.io.git
   branch: master
+- type: baidu_url_submitter
 
 # algolia
 ## 站内搜索
@@ -88,13 +89,13 @@ algolia:
 
 #table支持
 marked:
-gfm: true
-breaks: false
+  gfm: true
+  breaks: false
 
 #站点地图
 sitemap:
-    path: sitemap.xml
-    template: ./sitemap_template.xml
+  path: sitemap.xml
+  template: ./sitemap_template.xml
 
 #七牛云存储设置
 ##offline       是否离线. 离线状态将使用本地地址渲染
@@ -129,3 +130,9 @@ qiniu:
     folder: js
   css:
     folder: css
+
+baidu_url_submit:
+  count: 1 ## 提交最新的一个链接
+  host: www.timguan.net ## 在百度站长平台中注册的域名
+  token: HCOmC3wkI2FtA0RU ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
