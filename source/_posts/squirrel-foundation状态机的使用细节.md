@@ -180,4 +180,4 @@ PS:由于squirrel默认的DotVisitorImpl对带中文描述属性的State/Event�
 
 以上是我在落地状态机改造过程中的一些细节，欢迎大家留意讨论。
 
-<!-- {% githubCard user:TimGuan theme:medium repo:squirrel %} -->
+{% githubCard user:TimGuan theme:medium repo:squirrel %}
