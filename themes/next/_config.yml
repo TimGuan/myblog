@@ -293,7 +293,7 @@ mathjax:
 #duoshuo_shortname:
 
 # Disqus
-disqus_shortname: timguan
+# disqus_shortname: timguan
 
 # Hypercomments
 #hypercomments_id:
@@ -311,9 +311,9 @@ changyan:
 # You can get your uid from http://www.uyan.cc
 #youyan_uid: your uid
 
-# Support for LiveRe comments system.
+# Support for LiveRe comments system. 来必力
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8zMDUwMy83MDU3
 
 # Baidu Share
 # Available value:
