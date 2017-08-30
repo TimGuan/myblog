@@ -3,8 +3,8 @@ title: '启发:从MNS事务消息谈分布式事务'
 date: 2017-08-31 02:44:23
 categories: 
 - 编程
-- java
 - 系统设计
+- 分布式事务
 tags:
 - message queue
 - transaction
