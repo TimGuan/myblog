@@ -58,7 +58,7 @@ tags:
 
 # 在mns消息模型中两阶段提交的体现是:
 * 1.在执行事务前先preSendMessage：其背后的原理是创建一个delay message，但是这个delay message的delaytime > lifetime, 基于这个前提在得到确切的commit/rollback操作前，这个消息对于接受者是永远不可见的；
-* 2.本地事务结束后commit/rollback message：如果本地事务提交成功，需要将之前提交的delay message设置为消费者可见（底层实现可以应该与将delay变为0类似）；对应的如果本地事务提交失败，需要将之前的delay message删除；
+* 2.本地事务结束后commit/rollback message：如果本地事务提交成功，需要将之前提交的delay message设置为消费者可见（底层实现应该与将delay变为0类似）；对应的如果本地事务提交失败，需要将之前的delay message删除；
 
 这个过程需要注意到，我们务必保证在preSendMessage没得到最终确认之前不被消费者获取到，因此需要将发送的lifetime小于delaytime。
 
@@ -78,10 +78,9 @@ mns通过延迟消息机制实现了两阶段提交，其如何保证数据一�
 通过建立对opLog的监听，我们能够确保事务的最终一致性吗？回答这个问题前，我们先看这个问题的本质：最终、一致性。
 最终一致性问题的产生是由于发生了一些不可预期的问题，导致一个事务被提交（回滚），但消息没被commit（rollback）。我们通过opLog来追溯那些没有得到最终确认的消息并进行补偿（最终），并且通过检查本地事务的状态来确认这次补偿是commit或者是rollback（一致性）。正是基于这个补偿的策略，mns事务消息解决了"两阶段提交"所遗留的一致性问题，但这个过程中我们需要注意几个细节：
 * 补偿策略执行的时候需要明确知道本地事务的执行结果，因此我们的本地事务中需要记录preSendMessage所关联的本地事务操作结果。我们的做法是本地事务中同时记录下preSendMessage的receipthandle, 当补偿任务执行的时候，会通过opLog关联的receipthandle来检查，如果没有找到相关记录，那认为之前的本地事务被rollback了，否则commit;
-* MNS如何建立了preSendMessage<=>Local Transaction<=>opLog之间的关联关系？最简单的实现肯定是通过preSendMessage的MessageId来实现，不过mns通过preSendMessage的receipthandle来建立了这个关联（[ReceiptHandle含义](https://help.aliyun.com/document_detail/34954.html?spm=5176.doc27414.6.542.4v8wlc)）同时避免了额外的存；
+* MNS如何建立了preSendMessage<=>Local Transaction<=>opLog之间的关联关系？最简单的实现肯定是通过preSendMessage的MessageId来实现，不过mns通过preSendMessage的receipthandle来建立了这个关联（[ReceiptHandle含义](https://help.aliyun.com/document_detail/34954.html?spm=5176.doc27414.6.542.4v8wlc)）同时避免了额外的存储；
 * mns的补偿机制建立在对opLog的监听，那么我们怎么确定一个补偿的执行时机是合适的呢？补偿一定要在事务有明确结果之后执行才有意义，那么什么时候能得到明确的事务执行结果？其实我们是无法确切的知道这个时间点的，但我们能够有一个最低期望时间：不管一个事务成功或者失败，它的周期都不能超过事务的超时时间。因此我们在发送opLog时需要设置opLog的delayTime>TransactionTimeout([如何确认transactionTimeout](https://forums.mysql.com/read.php?22,651421,651421#msg-651421))来保证补偿任务执行的时候本地事务一定执行完成。
 
 # 从mns事务消息到分布式事务的启发
 上面啰嗦的写了一堆，看到这我们不妨对思考下mns事务消息解决的是业务系统(本地事务)与消息中间件之间的事务协同问题，如果是两个业务系统之间的分布式事务如何实现？
-不啰嗦了，大家意会吧~
-
+好吧，如果坚持看到这，你可能觉得我标题党了...那么我建议你再读一下”mns事务消息“一文。
