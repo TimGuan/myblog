@@ -115,12 +115,12 @@ sitemap:
 qiniu:
   offline: false
   sync: true
-  bucket: myblog
+  bucket: myblog2
   access_key: I9NNNsfBGdT05qjKFME0L1pBE13cIw9hPuRVw_qd
   secret_key: tB5ZqMdsfDuIWpFhc6yzB_sACkmfZLHT5YsSv9rM
   dirPrefix: qnsource
-  urlPrefix: http://ortsyq47e.bkt.clouddn.com/qnsource
-  up_host: http://ortsyq47e.bkt.clouddn.com
+  urlPrefix: http://pizmkoj24.bkt.clouddn.com/qnsource
+  up_host: http://pizmkoj24.bkt.clouddn.com
   local_dir: qnsource
   update_exist: true
   image: 
